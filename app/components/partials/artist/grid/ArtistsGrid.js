@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Col, Alert} from 'react-bootstrap';
-import LoadingSpinner from '../../../common/loading_spinner/LoadingSpinner';
 import ArtistItem from './item/ArtistItem';
 
 class ArtistsGrid extends React.Component {
@@ -11,8 +10,6 @@ class ArtistsGrid extends React.Component {
 
   renderArtists() {
     const {artists, onArtistClick, onFollowClick} = this.props;
-
-    if (artists.isFetching) return <LoadingSpinner />;
 
     if (artists.items.length === 0) return (
       <Alert bsStyle="danger">You are not following artists. You need to follow at least 1. Please try again.</Alert>

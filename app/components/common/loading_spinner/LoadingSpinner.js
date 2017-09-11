@@ -17,7 +17,7 @@ const LoadingSpinner = ({type, color, delay, width, height, className}) => {
 LoadingSpinner.defaultProps = {
   delay: 0,
   color: '#1DB954',
-  type: 'spinningBubbles',
+  type: 'spin',
   width: 64,
   height: 64,
   className: 'loading-spinner'

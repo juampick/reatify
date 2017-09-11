@@ -41,13 +41,11 @@ export class HomePage extends React.Component {
   renderRelatedArtistData() {
     const {relatedArtists} = this.props;
 
-
     if (relatedArtists.name && !relatedArtists.isFetching) {
       return (
         <Row className="artist-selected">
-          <strong>{relatedArtists.name}</strong> &nbsp;
-          <Button bsStyle="success" bsSize="xs" onClick={this.resetRelatedArtists}><i className="fa fa-undo"/> &nbsp;Reset Related
-            Artists</Button>
+          <strong>SEED</strong>: {relatedArtists.name} &nbsp;
+          <Button bsStyle="success" bsSize="xs" onClick={this.resetRelatedArtists}><i className="fa fa-undo"/> &nbsp;Reset Seed</Button>
         </Row>
       );
     }
@@ -60,6 +58,8 @@ export class HomePage extends React.Component {
     if (relatedArtists.isFetching || relatedArtists.items.length) {
       artistsToShow = relatedArtists;
     }
+
+    if (artistsToShow.isFetching) return <LoadingSpinner className="loading-spinner-home" />;
 
     return (
       <Col lg={12} md={12} sm={2} xs={4}>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Row, Col, Carousel} from 'react-bootstrap';
 import {IMAGE_COVER} from '../../../../resources/constants';
 import {getImage} from '../../../../helpers/imageHelper';
-import LoadingSpinner from '../../../common/loading_spinner/LoadingSpinner';
 import './ArtistsCarousel.scss';
 
 class ArtistsCarousel extends React.Component {
@@ -32,8 +31,6 @@ class ArtistsCarousel extends React.Component {
 
   render() {
     const {artists} = this.props;
-
-    if (artists.isFetching) return <LoadingSpinner/>;
 
     if (artists.items.length === 0) return null;
 
