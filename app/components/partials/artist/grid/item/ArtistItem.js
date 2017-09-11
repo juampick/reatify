@@ -46,7 +46,7 @@ class ArtistItem extends React.Component {
     if (image && image.url) {
       artistImageStyle = {
         backgroundImage: `url(${image.url})`
-      }
+      };
     }
 
     return (
