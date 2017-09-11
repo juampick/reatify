@@ -3,6 +3,7 @@ import accountService from '../services/accountService';
 import {SPOTIFY_ACCOUNT_ME} from '../resources/constants';
 import * as localStorageHelper from '../helpers/localStorageHelper';
 
+// Actions
 export function accountMeRequest() {
   return {
     type: types.ACCOUNT_ME_GET_REQUEST
@@ -36,9 +37,10 @@ export function getAccountData() {
   return function (dispatch) {
     dispatch(accountMeRequest());
     return accountService.getAccountData(dispatch).then(response => {
+
       const id = response.id;
       const externalUrl = response.external_urls.spotify;
-      const image = response.images && response.images[0].url;
+      const image = response.images && response.images[0] && response.images[0].url;
       const email = response.email;
       const country = response.country;
       const product = response.product;
@@ -66,7 +68,7 @@ export function getAccountData() {
 export function checkAndSetUserState() {
   return function (dispatch) {
     const user = localStorageHelper.get(SPOTIFY_ACCOUNT_ME);
-    if (!user) //ToDo: what happened if not set? logOut??
+    if (!user) //ToDo: what happened if not set? logOut or calling again the user?
       return;
 
     const userParsed = JSON.parse(user);

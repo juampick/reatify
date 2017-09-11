@@ -14,7 +14,7 @@ class Header extends React.Component {
     return (
       <span>
         {user.id} &nbsp;
-        <img className="img-circle" src={user.image} width="30" height="30" alt="user-image"/>
+        {user.image && <img className="img-circle" src={user.image} width="30" height="30" alt="user-image"/>}
       </span>
     );
   }

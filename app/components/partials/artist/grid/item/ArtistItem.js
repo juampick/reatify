@@ -38,13 +38,20 @@ class ArtistItem extends React.Component {
   render() {
     const {artist, onArtistClick} = this.props;
     const image = getImage(artist.images);
-    const artistImage = {
-      backgroundImage: `url(${image.url})`
+
+    let artistImageStyle = {
+      background: 'lightgray'
     };
+
+    if (image && image.url) {
+      artistImageStyle = {
+        backgroundImage: `url(${image.url})`
+      }
+    }
 
     return (
       <div className="artist-container text-center">
-        <div className="artist-image" style={artistImage} onClick={() => onArtistClick(artist.id, artist.name)}>
+        <div className="artist-image" style={artistImageStyle} onClick={() => onArtistClick(artist.id, artist.name)}>
           <i className="fa fa-search-plus fa-4x icon-discover"/>
         </div>
         <div className="artist-info">

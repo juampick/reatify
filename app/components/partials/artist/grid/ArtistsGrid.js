@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Col, Alert} from 'react-bootstrap';
 import ArtistItem from './item/ArtistItem';
+import './ArtistsGrid.scss';
 
 class ArtistsGrid extends React.Component {
   constructor(props, context) {
@@ -12,7 +13,7 @@ class ArtistsGrid extends React.Component {
     const {artists, onArtistClick, onFollowClick} = this.props;
 
     if (artists.items.length === 0) return (
-      <Alert bsStyle="danger">You are not following artists. You need to follow at least 1. Please try again.</Alert>
+      <Alert bsStyle="danger" className="no-following-artists">You are not following artists. You need to follow at least 1. Please try again.</Alert>
     );
 
     const artistsView = artists.items.map(artist => {

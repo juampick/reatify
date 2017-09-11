@@ -18,6 +18,11 @@
  when running against production version code
  */
 process.env.NODE_ENV = 'test';
+process.env.BASE_APP = 'http://localhost:3001/';
+process.env.SPOTIFY_WEB_API_AUTH_HOST ='https://accounts.spotify.com/';
+process.env.SPOTIFY_WEB_API_HOST = 'https://api.spotify.com/v1/';
+process.env.CLIENT_ID = '4a1a2468c80f4ea09ed416f81c0fadf9';
+process.env.CLIENT_SECRET = '1a15fe6ce40a4367b02662f1fdbe9f08';
 
 // Register babel so that it will transpile ES6 to ES5
 // before our tests run.

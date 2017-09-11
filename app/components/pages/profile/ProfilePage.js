@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Row, Col, PageHeader, Panel, Button} from 'react-bootstrap';
+import './ProfilePage.scss';
 
 export class ProfilePage extends React.Component {
   constructor(props, context) {
@@ -16,7 +17,8 @@ export class ProfilePage extends React.Component {
         <Panel header="Profile Page" bsStyle="success">
           <Row>
             <Col md={6}>
-              <img src={user.image} className="img-rounded" width={200} height={200}/>
+              {user.image && <img src={user.image} className="img-rounded" width={200} height={200}/>}
+              {!user.image && <span className="profile-no-image" />}
             </Col>
             <Col md={6}>
               <p><strong>Name:</strong> {user.id}</p>
