@@ -1,11 +1,41 @@
 # Reatify 
   
-Entirely made on ReactJS/Redux
+A little Spotify Client using the Spotify WEB API. Entirely made on ReactJS/Redux.
 
 ## Description
 Project created as a basic simple Spotify Client using React and Redux.
+You can view your profile, and view your followed artist, and also you can being suggested by new artist by clicking inside each of the artist.
+You can follow or unfollow artists.
+
+### Spotify Web API Auth
+Has been used the `Implicit Grant Flow` Auth Flow described here: https://developer.spotify.com/web-api/authorization-guide/#implicit-grant-flow
+
+## Requirements: 
+1. You'll need an Spotify Account (free or premium)
+2. You'll need to follow at least 1 artist.
 
 ## Installation/Execution
+
+### Environmental Variables:
+
+You have several environmental variables if you want to specify build the project.
+
+- `BASE_APP`: the base path of the project. (ie: `http://localhost:3001/). This will be used to create the REDIRECT_URI that the Spotify Web API needs.
+- `CLIENT_ID`: the client id of your SPOTIFY APP.
+- `CLIENT_SECRET`: the client secret of your SPOTIFY APP.
+
+If you want to set the env variables, you can do it in the following way:
+
+- OSX/Linux:
+```
+BASE_APP=http://localhost:3001/ npm run build
+```
+
+- Windows
+```
+set API_HOST=http://localhost:3001/
+npm run build
+```
 
 ### Installing
 To install please execute: 
@@ -43,3 +73,5 @@ To build the project to be deployed in a server, please execute:
 
 ### Tools
 - Webpack
+- Babel
+- Etc
