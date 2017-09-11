@@ -1,23 +1,23 @@
 import expect from 'expect';
-import * as LocalStorageHelper from './localStorageHelper';
+import * as localStorageHelper from './localStorageHelper';
 
 describe('LocalStorageHelper', () => {
-  it('should set a value  in the local storage when call to "setItem()" and get it using getItem()', () => {
+  it('should set a value in the local storage when call to "set()" and get it using get()', () => {
     // arrange.
-    const cowsSearched = [
+    const test = [
       {id: 1234},
-      {id: 4321}
+      {name: 4321}
     ];
 
     // act.
-    localStorage.setItem = expect.createSpy().andReturn(JSON.stringify(cowsSearched));
-    localStorage.getItem = expect.createSpy().andReturn(JSON.stringify(cowsSearched));
+    localStorage.setItem = expect.createSpy().andReturn(JSON.stringify(test));
+    localStorage.getItem = expect.createSpy().andReturn(JSON.stringify(test));
     localStorage.removeItem = expect.createSpy().andReturn();
 
-    LocalStorageHelper.set('testList', JSON.stringify(cowsSearched));
+    localStorageHelper.set('testList', JSON.stringify(test));
 
     // assert.
-    expect(LocalStorageHelper.getParsedItem('testList').length).toEqual(2);
+    expect(localStorageHelper.getParsedItem('testList').length).toEqual(2);
   });
 });
 

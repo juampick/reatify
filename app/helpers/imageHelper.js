@@ -29,7 +29,4 @@ export function getImage(imagesArray, type = IMAGE_THUMBNAIL) {
       return null;
     }
   }
-
-
-
 }
