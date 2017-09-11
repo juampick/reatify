@@ -9,7 +9,7 @@ import ArtistsCarousel from '../../partials/artist/carousel/ArtistsCarousel';
 import LoadingSpinner from '../../common/loading_spinner/LoadingSpinner';
 import './HomePage.scss';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -44,7 +44,7 @@ class HomePage extends React.Component {
 
     if (relatedArtists.name && !relatedArtists.isFetching) {
       return (
-        <Row className="artist-selected" pullRight>
+        <Row className="artist-selected">
           <strong>{relatedArtists.name}</strong> &nbsp;
           <Button bsStyle="success" bsSize="xs" onClick={this.resetRelatedArtists}><i className="fa fa-undo"/> &nbsp;Reset Related
             Artists</Button>

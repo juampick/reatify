@@ -78,9 +78,6 @@ export function createAuthorizeURL() {
 
 export function checkCallbackResponse(hashParams, queryParams) {
   return function (dispatch) {
-
-    console.log('checkCallbackResponse from sessionActions.js');
-
     if (!isEmpty(queryParams)) { //Check for errors
       dispatch(loginError('Access Denied. You are not allowed to see this.'));
       dispatch(push('/error'));

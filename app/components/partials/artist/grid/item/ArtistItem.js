@@ -52,11 +52,9 @@ class ArtistItem extends React.Component {
           </div>
         </div>
       </Panel>
-    )
+    );
   }
 }
-
-//cdo no lo sigo default.. y si lo sigo success
 
 ArtistItem.propTypes = {
   artist: PropTypes.shape({

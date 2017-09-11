@@ -57,7 +57,6 @@ export function getAccountData() {
       localStorageHelper.set(SPOTIFY_ACCOUNT_ME, JSON.stringify(user));
       dispatch(accountMeSuccess(user));
     }).catch(error => {
-      debugger;
       const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
       dispatch(accountMeError(message));
     });
@@ -67,7 +66,6 @@ export function getAccountData() {
 export function checkAndSetUserState() {
   return function (dispatch) {
     const user = localStorageHelper.get(SPOTIFY_ACCOUNT_ME);
-    //debugger;
     if (!user) //ToDo: what happened if not set? logOut??
       return;
 

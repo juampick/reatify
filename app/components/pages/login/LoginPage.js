@@ -22,12 +22,10 @@ class LoginPage extends React.Component {
     const {pathname, hash, query} = location;
 
     if (pathname.includes('login')) { //When enter by login
-      console.log('createAuthorizeURL .. login');
       sessionActions.createAuthorizeURL();
     }
 
     if (pathname.includes('callback')) {
-      console.log('checkCallbackResponse');
       sessionActions.checkCallbackResponse(queryString.parse(hash), query);
     }
   }

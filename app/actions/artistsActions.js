@@ -2,6 +2,8 @@ import update from 'immutability-helper';
 import * as types from './actionTypes';
 import artistsService from '../services/artistsService';
 import {ARTISTS_FOLLOWING_LIMIT} from '../resources/constants';
+import * as localStorageHelper from '../helpers/localStorageHelper';
+import {RELATED_ARTIST_SELECTED} from '../resources/constants';
 
 export function artistsFollowingGetRequest() {
   return {
@@ -103,12 +105,18 @@ export function artistsFollowingDeleteError(id, message) {
 
 export function getFollowingArtists() {
   return function (dispatch) {
+
+    if (localStorageHelper.get(RELATED_ARTIST_SELECTED)){
+      const artistSelected = localStorageHelper.getParsedItem(RELATED_ARTIST_SELECTED);
+      dispatch(getRelatedArtists(artistSelected.id, artistSelected.name));
+      return;
+    }
+
     dispatch(artistsFollowingGetRequest());
 
     return artistsService.getFollowingArtists(dispatch, ARTISTS_FOLLOWING_LIMIT).then(response => {
       dispatch(artistsFollowingGetSuccess(response.artists.items));
     }).catch(error => {
-      debugger;
       const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
       dispatch(artistsFollowingGetError(message));
     });
@@ -141,10 +149,12 @@ export function getRelatedArtists(id, name) {
         });
 
         dispatch(artistsRelatedGetSuccess(id, artists));
+
+        //Also storing the selected artist on the localStorage.
+        localStorageHelper.set(RELATED_ARTIST_SELECTED, JSON.stringify({id: id, name: name}));
       });
 
     }).catch(error => {
-      debugger;
       const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
       dispatch(artistsRelatedGetError(id, message));
     });
@@ -154,8 +164,9 @@ export function getRelatedArtists(id, name) {
 export function resetRelatedArtists() {
   return function (dispatch) {
     dispatch(artistsRelatedReset()); //Reset the related artists
+    localStorageHelper.remove(RELATED_ARTIST_SELECTED);
     dispatch(getFollowingArtists()); //Request again
-  }
+  };
 }
 
 export function updateFollowArtist(id, follow) {
@@ -167,7 +178,7 @@ export function updateFollowArtist(id, follow) {
         dispatch(artistsFollowingUpdateSuccess(id));
       }).catch(error => {
         const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
-        dispatch(artistsFollowingUpdateError(id, message))
+        dispatch(artistsFollowingUpdateError(id, message));
       });
     } else { //Unfollow artist:
       dispatch(artistsFollowingDeleteRequest(id));
@@ -178,5 +189,5 @@ export function updateFollowArtist(id, follow) {
         dispatch(artistsFollowingDeleteError(id, message));
       });
     }
-  }
+  };
 }

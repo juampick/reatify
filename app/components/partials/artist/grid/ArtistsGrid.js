@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Grid, Col, Button, Thumbnail, Alert} from 'react-bootstrap';
+import {Grid, Col, Alert} from 'react-bootstrap';
 import LoadingSpinner from '../../../common/loading_spinner/LoadingSpinner';
 import ArtistItem from './item/ArtistItem';
 

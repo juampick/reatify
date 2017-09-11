@@ -39,7 +39,7 @@ class ArtistsCarousel extends React.Component {
 
     return (
       <Row className="artist-carousel">
-        <Col lg={6} lgOffset={3}>
+        <Col lg={6} lgOffset={3} sm={12}>
           <Carousel pauseOnHover={false} interval={2000} indicators={false} controls={false}>
             {this.renderCarouselItems()}
           </Carousel>

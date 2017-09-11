@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Row, Col, PageHeader, Panel} from 'react-bootstrap';
 
-class ProfilePage extends React.Component {
+export class ProfilePage extends React.Component {
   constructor(props, context) {
     super(props, context);
   }

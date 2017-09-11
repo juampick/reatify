@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-class ErrorPage extends React.Component {
+export class ErrorPage extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -21,6 +21,7 @@ class ErrorPage extends React.Component {
         </div>
       );
     }
+    return null;
   }
 }
 
