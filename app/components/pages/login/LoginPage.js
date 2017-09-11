@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import queryString from 'query-string';
-import {Row, Col, Panel, Alert, PageHeader, Button} from 'react-bootstrap';
+import {Row, Col, Panel, Alert, Button} from 'react-bootstrap';
 import * as sessionActions from '../../../actions/sessionActions';
+import './LoginPage.scss';
 
 export class LoginPage extends React.Component {
   constructor(props, context) {
@@ -36,12 +37,6 @@ export class LoginPage extends React.Component {
     });
   }
 
-  renderHeading() {
-    return (
-      <PageHeader>Welcome</PageHeader>
-    );
-  }
-
   renderSessionExpiredAlert() {
     const {sessionExpired} = this.props;
     const {sessionExpiredAlertVisible} = this.state;
@@ -61,10 +56,9 @@ export class LoginPage extends React.Component {
     const {authorizeUrl} = this.props;
     return (
       <Row>
-        <Col md={6} mdOffset={3} sm={6}>
-          {this.renderHeading()}
+        <Col md={6} mdOffset={3} sm={6} smOffset={3} lg={6} lgOffset={3}>
           {this.renderSessionExpiredAlert()}
-          <Panel bsStyle="primary" header="Login using Spotify Credentials">
+          <Panel bsStyle="primary" className="panel-login" header="Login using Spotify Credentials">
             <p>This demo app explores uses the Spotify Web API.</p>
             <p>To use it, you need to sign in with your Spotify account.</p>
             <Button bsStyle="success" href={authorizeUrl} block >

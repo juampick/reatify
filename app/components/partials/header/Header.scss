@@ -1,0 +1,10 @@
+@import '../../../assets/styles/colors.scss';
+
+nav.navbar-reatify {
+  margin-bottom: 0;
+
+  &.navbar-default .navbar-nav > .active > a {
+    color: $spotify_black;
+    background: none;
+  }
+}

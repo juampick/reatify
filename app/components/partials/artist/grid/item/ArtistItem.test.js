@@ -22,9 +22,8 @@ describe('ArtistItem', () => {
       onFollowClick: () => {}
     });
 
-    expect(wrapper.find('Panel').length).toEqual(1);
+    expect(wrapper.find('div').exists()).toEqual(1);
     expect(wrapper.find('div.artist-image').length).toEqual(1);
-    expect(wrapper.find('Image').length).toEqual(1);
     expect(wrapper.find('div.artist-info').length).toEqual(1);
     expect(wrapper.find('h3').text()).toEqual('Artist Test 1');
     expect(wrapper.find('div.artist-actions').length).toEqual(1);

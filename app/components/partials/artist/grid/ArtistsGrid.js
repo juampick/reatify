@@ -17,7 +17,7 @@ class ArtistsGrid extends React.Component {
 
     const artistsView = artists.items.map(artist => {
       return (
-        <Col key={artist.id} xs={12} md={4}>
+        <Col key={artist.id} xs={12} md={6} sm={6} lg={4}>
           <ArtistItem
             artist={artist}
             onArtistClick={onArtistClick}

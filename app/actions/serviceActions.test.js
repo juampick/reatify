@@ -23,11 +23,7 @@ describe('Service Actions', () => {
         payload: {}
       };
 
-      const store = mockStore({
-        session: {
-          loggingOut: false
-        }
-      });
+      const store = mockStore();
 
       // Act & assert.
       store.dispatch(serviceActions.handleServiceError(error));

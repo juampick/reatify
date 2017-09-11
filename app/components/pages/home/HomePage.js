@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Grid, Row, Panel, Pager, Col, Button, PageHeader} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import * as artistsActions from '../../../actions/artistsActions';
 import ArtistsGrid from '../../partials/artist/grid/ArtistsGrid';
 import ArtistsCarousel from '../../partials/artist/carousel/ArtistsCarousel';
@@ -43,9 +43,13 @@ export class HomePage extends React.Component {
 
     if (relatedArtists.name && !relatedArtists.isFetching) {
       return (
-        <Row className="artist-selected">
-          <strong>SEED</strong>: {relatedArtists.name} &nbsp;
-          <Button bsStyle="success" bsSize="xs" onClick={this.resetRelatedArtists}><i className="fa fa-undo"/> &nbsp;Reset Seed</Button>
+        <Row className="artist-selected text-center">
+          <div className="seed">
+            <strong>SEED</strong>: {relatedArtists.name}
+          </div>
+          <div className="reset-seed">
+            <Button bsStyle="success" onClick={this.resetRelatedArtists}><i className="fa fa-undo"/> &nbsp;Reset Seed</Button>
+          </div>
         </Row>
       );
     }
@@ -62,7 +66,7 @@ export class HomePage extends React.Component {
     if (artistsToShow.isFetching) return <LoadingSpinner className="loading-spinner-home" />;
 
     return (
-      <Col lg={12} md={12} sm={2} xs={4}>
+      <Col lg={12} md={12} sm={12} xs={12}>
         <ArtistsCarousel
           artists={artistsToShow}/>
         {this.renderRelatedArtistData()}

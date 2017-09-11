@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {IndexLink} from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
+import './Header.scss';
 
 class Header extends React.Component {
   constructor(props, context) {
@@ -36,10 +37,10 @@ class Header extends React.Component {
   render() {
     const {loggedIn} = this.props;
     return (
-      <Navbar fluid collapseOnSelect>
+      <Navbar fluid collapseOnSelect className="navbar-reatify">
         <Navbar.Header>
           <Navbar.Brand>
-            <IndexLink to="/" activeClassName="navbar-brand" className="navbar-brand">
+            <IndexLink to="/" className="navbar-brand">
               ReatifyApp
             </IndexLink>
           </Navbar.Brand>

@@ -8,6 +8,7 @@ import * as sessionActions from '../actions/sessionActions';
 import Header from './partials/header/Header';
 import Footer from './partials/footer/Footer';
 import {FAVICON_SPOTIFY} from '../favicon';
+import './App.scss';
 
 // This component handles the App template used on every page.
 class App extends React.Component {
@@ -45,7 +46,7 @@ class App extends React.Component {
           onLogout={this.handleLogOut}
           user={user}
         />
-        <Grid fluid={true}>
+        <Grid fluid={true} className="container-full-width">
           {this.props.children}
         </Grid>
         <hr/>

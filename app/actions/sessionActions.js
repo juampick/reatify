@@ -117,7 +117,6 @@ export function checkAndSetSessionState() {
     const tokenType = localStorageHelper.get(SPOTIFY_TOKEN_TYPE);
     const expiresIn = localStorageHelper.get(SPOTIFY_EXPIRES_IN);
     if (!accessToken || !tokenType || !expiresIn) {
-      //dispatch(logOut());  //ToDo: check this.
       return;
     }
 
@@ -142,7 +141,7 @@ export function sessionExpiredAction() {
   };
 }
 
-function cleanupLocalStorage() { //ToDo: loop over?
+function cleanupLocalStorage() {
   localStorageHelper.remove(SPOTIFY_ACCESS_TOKEN);
   localStorageHelper.remove(SPOTIFY_TOKEN_TYPE);
   localStorageHelper.remove(SPOTIFY_STATE_HASH);
