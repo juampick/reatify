@@ -8,7 +8,7 @@ function setup(props) {
 }
 
 describe('LoginPage', () => {
-  it('should render the wrapper div with h2 and Link when renders by default', () => {
+  it('should render the wrapper component and sub components when renders by default', () => {
     const wrapper = setup({
       sessionActions: {
         createAuthorizeURL: () => {}
@@ -21,6 +21,22 @@ describe('LoginPage', () => {
 
     expect(wrapper.find('Row').length).toEqual(1);
     expect(wrapper.find('Panel').length).toEqual(1);
-    //expect(wrapper.find('Link').length).toEqual(1);
+    expect(wrapper.find('Button').exists()).toBe(true);
+  });
+
+  it('should render sessionExpired message when renders with sessionExpired as true', () => {
+    const wrapper = setup({
+      sessionActions: {
+        createAuthorizeURL: () => {}
+      },
+      location: {
+        pathname: '/login'
+      },
+      authorizeUrl: '',
+      sessionExpired: true
+    });
+
+    expect(wrapper.find('Alert').length).toEqual(true);
+    expect(wrapper.find('h4').text()).toEqual('Session Expired');
   });
 });

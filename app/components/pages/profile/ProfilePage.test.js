@@ -23,5 +23,7 @@ describe('ProfilePage', () => {
     expect(wrapper.find('Col').exists()).toBe(true);
     expect(wrapper.find('PageHeader').length).toEqual(1);
     expect(wrapper.find('Panel').length).toEqual(1);
+    expect(wrapper.find('Button').length).toEqual(1);
+    expect(wrapper.find('small').text()).toEqual('juampick');
   });
 });

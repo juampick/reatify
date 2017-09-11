@@ -22,11 +22,11 @@ export class LoginPage extends React.Component {
     const {location, sessionActions} = this.props;
     const {pathname, hash, query} = location;
 
-    if (pathname.includes('login')) { //When enter by login
+    if (pathname.includes('login')) { //When enter by Login.
       sessionActions.createAuthorizeURL();
     }
 
-    if (pathname.includes('callback')) {
+    if (pathname.includes('callback')) { //When returning from Spotify callback.
       sessionActions.checkCallbackResponse(queryString.parse(hash), query);
     }
   }
@@ -61,11 +61,11 @@ export class LoginPage extends React.Component {
           <Panel bsStyle="primary" className="panel-login" header="Login using Spotify Credentials">
             <p>This demo app explores uses the Spotify Web API.</p>
             <p>To use it, you need to sign in with your Spotify account.</p>
-            <Button bsStyle="success" href={authorizeUrl} block >
+            <Button bsStyle="success" href={authorizeUrl} block>
               <i className="fa fa-spotify"/> Authorize with Spotify
             </Button>
             <hr />
-            <Button href="https://www.spotify.com/signup/" bsStyle="warning" bsSize="small" target="_blank">
+            <Button href="https://www.spotify.com/signup/" bsStyle="warning" bsSize="small" target="_blank" block>
               <i className="fa fa-user-plus" />&nbsp;Don't have an Account? Please register
             </Button>
           </Panel>

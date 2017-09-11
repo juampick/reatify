@@ -1,7 +1,6 @@
 import expect from 'expect';
 import initialState from './initialState';
-import {artistsFollowing} from './artistsReducer';
-import {artistsRelated} from './artistsReducer';
+import {artistsFollowing, artistsRelated} from './artistsReducer';
 import * as artistsActions from '../actions/artistsActions';
 import * as actionTypes from '../actions/actionTypes';
 

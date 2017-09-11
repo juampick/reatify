@@ -1,7 +1,23 @@
+@import '../../../assets/styles/colors';
+
 .profile-no-image {
   width: 200px;
   height: 200px;
   background-color: lightgray;
   display: block;
   border-radius: 80%;
+}
+
+.panel-default {
+  &.panel-profile {
+    margin-top: 30px;
+    border-color: $spotify_green;
+
+    .panel-heading {
+      border-color: $spotify_green;
+      background: $spotify_green;
+      color: $spotify_white;
+    }
+  }
+
 }

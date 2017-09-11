@@ -95,7 +95,7 @@ HomePage.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.bool,
     errorMessage: PropTypes.string
-  }).isRequired,
+  }).isRequired
 };
 
 function mapStatesToProps(state) {

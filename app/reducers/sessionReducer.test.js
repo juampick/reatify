@@ -7,7 +7,7 @@ import * as actionTypes from '../actions/actionTypes';
 describe('Session Reducer', () => {
   describe('Session Reducer - Authorize', () => {
     it(`should work when passed ${actionTypes.AUTHORIZE_REQUEST}`, () => {
-      const authorizeUrl = 'http://testUrl.com'
+      const authorizeUrl = 'http://testUrl.com';
       // Arrange.
       const action = sessionActions.authorizeRequest(authorizeUrl);
 

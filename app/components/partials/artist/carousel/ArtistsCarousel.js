@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Carousel} from 'react-bootstrap';
+import {Row, Carousel} from 'react-bootstrap';
 import {IMAGE_COVER} from '../../../../resources/constants';
 import {getImage} from '../../../../helpers/imageHelper';
 import './ArtistsCarousel.scss';
@@ -36,11 +36,9 @@ class ArtistsCarousel extends React.Component {
 
     return (
       <Row className="artist-carousel">
-        {/*<Col lg={6} lgOffset={3} md={6} sm={12}>*/}
-          <Carousel pauseOnHover={false} interval={2000} indicators={false} controls={false}>
-            {this.renderCarouselItems()}
-          </Carousel>
-        {/*</Col>*/}
+        <Carousel pauseOnHover={false} interval={2000} indicators={false} controls={false}>
+          {this.renderCarouselItems()}
+        </Carousel>
       </Row>
     );
   }

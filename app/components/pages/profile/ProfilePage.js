@@ -14,7 +14,7 @@ export class ProfilePage extends React.Component {
     return (
       <Col lg={6} lgOffset={3} md={6} mdOffset={3} sm={8} smOffset={2} xs={12}>
         <PageHeader>Profile Page <small>{user.id}</small></PageHeader>
-        <Panel header="Profile Page" bsStyle="success">
+        <Panel header="Profile Page" className="panel-profile">
           <Row>
             <Col md={6}>
               {user.image && <img src={user.image} className="img-rounded" width={200} height={200}/>}
