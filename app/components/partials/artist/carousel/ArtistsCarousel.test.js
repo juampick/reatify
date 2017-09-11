@@ -8,19 +8,6 @@ function setup(props) {
 }
 
 describe('ArtistsCarousel', () => {
-  it('should renders ArtistsCarousel with LoadingSpinner when rendered by default with isFetching as true', () => {
-    const wrapper = setup({
-      artists: {
-        isFetching: true,
-        items: []
-      },
-      onArtistClick: () => {},
-      onFollowClick: () => {}
-    });
-
-    expect(wrapper.find('LoadingSpinner').exists()).toBe(true);
-  });
-
   it('should not render anything if you dont have items', () => {
     const wrapper = setup({
       artists: {

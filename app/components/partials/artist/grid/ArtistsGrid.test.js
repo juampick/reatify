@@ -8,20 +8,6 @@ function setup(props) {
 }
 
 describe('ArtistsGrid', () => {
-  it('renders ArtistsGrid with LoadingSpinner when rendered by default with isFetching as true', () => {
-    const wrapper = setup({
-      artists: {
-        isFetching: true,
-        items: []
-      },
-      onArtistClick: () => {},
-      onFollowClick: () => {}
-    });
-
-    expect(wrapper.find('Grid').length).toEqual(1);
-    expect(wrapper.find('LoadingSpinner').exists()).toBe(true);
-  });
-
   it('renders ArtistsGrid Alert component with no following artist', () => {
     const wrapper = setup({
       artists: {
