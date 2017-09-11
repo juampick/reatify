@@ -1,6 +1,6 @@
-import * as endpoints from '../services/apiEndpoints';
-import * as apiMethods from './apiMethods';
 import ApiBase from './apiBase';
+import * as endpoints from '../resources/apiEndpoints';
+import * as apiMethods from '../resources/apiMethods';
 
 class AccountService {
 

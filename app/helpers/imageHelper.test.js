@@ -8,6 +8,6 @@ describe('ImageHelper', () => {
     const imageArray = [{url: '1'}, {url: '2'}, {url: '3'}];
 
     // assert.
-    expect(imageHelper.getImage(imageArray, IMAGE_COVER)).toEqual({url:'1'})
+    expect(imageHelper.getImage(imageArray, IMAGE_COVER)).toEqual({url:'1'});
   });
 });

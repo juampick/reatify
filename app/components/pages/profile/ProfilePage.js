@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Row, Col, PageHeader, Panel} from 'react-bootstrap';
+import {Row, Col, PageHeader, Panel, Button} from 'react-bootstrap';
 
 export class ProfilePage extends React.Component {
   constructor(props, context) {
@@ -10,7 +10,6 @@ export class ProfilePage extends React.Component {
 
   render() {
     const {user} = this.props;
-
     return (
       <Col lg={6} lgOffset={3} md={6} mdOffset={3} sm={8} smOffset={2} xs={12}>
         <PageHeader>Profile Page <small>{user.id}</small></PageHeader>
@@ -26,9 +25,9 @@ export class ProfilePage extends React.Component {
               <p><strong>Country:</strong> {user.country}</p>
               <p><strong>Spotify Account:</strong> <span className="label label-success"> {user.product}</span></p>
               <hr/>
-              <a href={user.externalUrl} target="_black" className="btn btn-success">
+              <Button href={user.externalUrl} target="_black" bsStyle="success">
                 Check public profile
-              </a>
+              </Button>
             </Col>
           </Row>
         </Panel>

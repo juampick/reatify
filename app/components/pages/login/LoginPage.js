@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import {Row, Col, Panel, Alert, PageHeader, Button} from 'react-bootstrap';
 import * as sessionActions from '../../../actions/sessionActions';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -80,7 +80,6 @@ class LoginPage extends React.Component {
     );
   }
 }
-//="btn btn-success center-block"
 
 LoginPage.propTypes = {
   sessionActions: PropTypes.object,

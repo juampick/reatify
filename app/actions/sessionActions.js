@@ -6,7 +6,7 @@ import * as localStorageHelper from '../helpers/localStorageHelper';
 import {generateURL} from '../helpers/urlHelper';
 import {generateRandomStringHash} from '../helpers/stringHelper';
 import {AUTHORIZE, SPOTIFY_ACCESS_TOKEN, SPOTIFY_EXPIRES_IN, SPOTIFY_STATE_HASH, SPOTIFY_TOKEN_TYPE, SPOTIFY_ACCOUNT_ME, TOKEN} from '../resources/constants';
-import * as apiEndpoints from '../services/apiEndpoints';
+import * as apiEndpoints from '../resources/apiEndpoints';
 
 export function authorizeRequest(authorizeUrl) {
   return {

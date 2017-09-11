@@ -21,7 +21,7 @@ class Header extends React.Component {
   renderLoggedSection() {
     const {user, onLogout} = this.props;
     return (
-      <Nav pullRight>
+      <Nav pullRight className="logged-nav">
         <NavDropdown eventKey={3} title={this.renderDropDownTitle(user)} id="basic-nav-dropdown">
           <LinkContainer to="/profile">
             <MenuItem eventKey={3.1}><i className="fa fa-address-card"/> &nbsp; Profile</MenuItem>
@@ -63,7 +63,11 @@ class Header extends React.Component {
 Header.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   onLogout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    image: PropTypes.string
+  }).isRequired
 };
 
 export default Header;

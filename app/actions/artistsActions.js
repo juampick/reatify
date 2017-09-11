@@ -1,10 +1,10 @@
 import update from 'immutability-helper';
 import * as types from './actionTypes';
 import artistsService from '../services/artistsService';
-import {ARTISTS_FOLLOWING_LIMIT} from '../resources/constants';
+import {ARTISTS_FOLLOWING_LIMIT, RELATED_ARTIST_SELECTED} from '../resources/constants';
 import * as localStorageHelper from '../helpers/localStorageHelper';
-import {RELATED_ARTIST_SELECTED} from '../resources/constants';
 
+//Actions
 export function artistsFollowingGetRequest() {
   return {
     type: types.ARTISTS_FOLLOWING_GET_REQUEST

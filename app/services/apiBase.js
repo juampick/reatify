@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
-import * as endpoints from '../services/apiEndpoints';
+import * as endpoints from '../resources/apiEndpoints';
 import {handleServiceError} from '../actions/serviceActions';
 import ServiceError from './serviceError';
 import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_TOKEN_TYPE} from '../resources/constants';
@@ -29,7 +29,6 @@ class ApiBase {
    * Base method to call an API endpoint. You only need to pass the required parameters and will reply the response accordingly.
    * @param dispatch
    * @param method
-   * @param baseUrlParam
    * @param url
    * @param requireAuth
    * @param params
