@@ -11,6 +11,7 @@ const sessionReducer = (state = initialState.auth, action) => {
       );
 
     case types.LOG_IN_SUCCESS:
+    case types.LOG_IN_CHECK:
       return Object.assign({}, state,
         {
           loggedIn: true,
@@ -20,13 +21,7 @@ const sessionReducer = (state = initialState.auth, action) => {
           session: {
             accessToken: action.accessToken,
             expireIn: action.expiresIn,
-            loggedAt: Date.now(),
-            user: {
-              id: null,
-              name: null,
-              displayName: null,
-              email: null
-            }
+            loggedAt: Date.now()
           }
         }
       );
@@ -43,27 +38,6 @@ const sessionReducer = (state = initialState.auth, action) => {
         }
       );
 
-    case types.LOG_IN_CHECK:
-      return Object.assign({}, state,
-        {
-          loggedIn: true,
-          error: false,
-          errorMessage: null,
-          authorizeUrl: null,
-          session: {
-            accessToken: action.accessToken,
-            expireIn: action.expiresIn,
-            loggedAt: Date.now(),
-            user: {
-              id: null,
-              name: null,
-              displayName: null,
-              email: null
-            }
-          }
-        }
-      );
-
     case types.LOG_OUT_SUCCESS:
       return Object.assign({}, state,
         {
@@ -71,13 +45,7 @@ const sessionReducer = (state = initialState.auth, action) => {
           session: {
             accessToken: null,
             expireIn: null,
-            loggedAt: null,
-            user: {
-              id: null,
-              name: null,
-              displayName: null,
-              email: null
-            }
+            loggedAt: null
           }
         }
       );

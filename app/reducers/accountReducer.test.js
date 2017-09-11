@@ -5,7 +5,7 @@ import * as accountActions from '../actions/accountActions';
 import * as actionTypes from '../actions/actionTypes';
 
 describe('Account Reducer', () => {
-  describe('Account Actions - Get Account Data', () => {
+  describe('Account Reducer - Get Account Data', () => {
     it(`should work when passed ${actionTypes.ACCOUNT_ME_GET_REQUEST}`, () => {
       // Arrange.
       const action = accountActions.accountMeRequest();
