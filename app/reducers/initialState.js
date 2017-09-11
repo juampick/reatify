@@ -6,7 +6,6 @@ export default {
     authorizeUrl: null,
     session: {
       accessToken: null,
-      tokenType: null,
       expireIn: null,
       loggedAt: null
     },

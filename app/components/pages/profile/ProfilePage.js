@@ -23,7 +23,7 @@ export class ProfilePage extends React.Component {
             <Col md={6}>
               <p><strong>Name:</strong> {user.id}</p>
               <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>BirthDate:</strong> {user.birthDate}</p>
+              <p><strong>Birthdate:</strong> {user.birthDate}</p>
               <p><strong>Country:</strong> {user.country}</p>
               <p><strong>Spotify Account:</strong> <span className="label label-success"> {user.product}</span></p>
               <hr/>

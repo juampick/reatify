@@ -19,15 +19,13 @@ const sessionReducer = (state = initialState.auth, action) => {
           authorizeUrl: null,
           session: {
             accessToken: action.accessToken,
-            tokenType: action.tokenType,
             expireIn: action.expiresIn,
             loggedAt: Date.now(),
             user: {
               id: null,
               name: null,
               displayName: null,
-              email: null,
-              tokenType: null
+              email: null
             }
           }
         }
@@ -54,15 +52,13 @@ const sessionReducer = (state = initialState.auth, action) => {
           authorizeUrl: null,
           session: {
             accessToken: action.accessToken,
-            tokenType: action.tokenType,
             expireIn: action.expiresIn,
             loggedAt: Date.now(),
             user: {
               id: null,
               name: null,
               displayName: null,
-              email: null,
-              tokenType: null
+              email: null
             }
           }
         }
@@ -74,15 +70,13 @@ const sessionReducer = (state = initialState.auth, action) => {
           loggedIn: false,
           session: {
             accessToken: null,
-            tokenType: null,
             expireIn: null,
             loggedAt: null,
             user: {
               id: null,
               name: null,
               displayName: null,
-              email: null,
-              tokenType: null
+              email: null
             }
           }
         }

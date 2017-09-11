@@ -59,7 +59,7 @@ export function getAccountData() {
       localStorageHelper.set(SPOTIFY_ACCOUNT_ME, JSON.stringify(user));
       dispatch(accountMeSuccess(user));
     }).catch(error => {
-      const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
+      const message = error && error.message ? error.message : 'Unknown Error';
       dispatch(accountMeError(message));
     });
   };

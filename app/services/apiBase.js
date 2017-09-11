@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import * as endpoints from '../resources/apiEndpoints';
 import {handleServiceError} from '../actions/serviceActions';
 import ServiceError from './serviceError';
-import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_TOKEN_TYPE} from '../resources/constants';
+import {SPOTIFY_ACCESS_TOKEN} from '../resources/constants';
 import * as localStorageHelper from '../helpers/localStorageHelper';
 
 const AUTHORIZATION = 'AUTHORIZATION';
@@ -38,7 +38,7 @@ class ApiBase {
   static doRequest(dispatch, method, url, requireAuth = false, params = false, body = false) {
     let headers = Object.assign({}, defaultHeaders);
     if (requireAuth) {
-      headers = Object.assign(headers, {AUTHORIZATION: `${localStorageHelper.get(SPOTIFY_TOKEN_TYPE)} ${localStorageHelper.get(SPOTIFY_ACCESS_TOKEN)}`});
+      headers = Object.assign(headers, {AUTHORIZATION: `Bearer ${localStorageHelper.get(SPOTIFY_ACCESS_TOKEN)}`});
     }
 
     let options = {

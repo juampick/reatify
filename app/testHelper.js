@@ -10,7 +10,8 @@ export function cleanNock() {
 export function getAuthenticatedNock() {
   return nock(endpoints.SPOTIFY_WEB_API_HOST, {
     reqheaders: {
-      'AUTHORIZATION': `Bearer ${token}`
+      'content-type': 'application/json',
+      'authorization': `Bearer ${token}`
     }
   });
 }
