@@ -5,7 +5,7 @@ import {getAccountData} from './accountActions';
 import * as localStorageHelper from '../helpers/localStorageHelper';
 import {generateURL} from '../helpers/urlHelper';
 import {generateRandomStringHash} from '../helpers/stringHelper';
-import {AUTHORIZE, SPOTIFY_ACCESS_TOKEN, SPOTIFY_EXPIRES_IN, SPOTIFY_STATE_HASH, SPOTIFY_TOKEN_TYPE, SPOTIFY_ACCOUNT_ME, TOKEN} from '../resources/constants';
+import {AUTHORIZE, SPOTIFY_ACCESS_TOKEN, SPOTIFY_EXPIRES_IN, SPOTIFY_STATE_HASH, SPOTIFY_TOKEN_TYPE, SPOTIFY_ACCOUNT_ME, TOKEN, RELATED_ARTIST_SELECTED} from '../resources/constants';
 import * as apiEndpoints from '../resources/apiEndpoints';
 
 export function authorizeRequest(authorizeUrl) {
@@ -147,4 +147,5 @@ function cleanupLocalStorage() {
   localStorageHelper.remove(SPOTIFY_STATE_HASH);
   localStorageHelper.remove(SPOTIFY_EXPIRES_IN);
   localStorageHelper.remove(SPOTIFY_ACCOUNT_ME);
+  localStorageHelper.remove(RELATED_ARTIST_SELECTED);
 }

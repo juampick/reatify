@@ -66,7 +66,7 @@ export class LoginPage extends React.Component {
             </Button>
             <hr />
             <Button href="https://www.spotify.com/signup/" bsStyle="warning" bsSize="small" target="_blank">
-              Don't have an Account? please register
+              <i className="fa fa-user-plus" />&nbsp;Don't have an Account? Please register
             </Button>
           </Panel>
         </Col>
