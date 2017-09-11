@@ -1,31 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link, IndexLink} from 'react-router';
+import {IndexLink} from 'react-router';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
 
-const Header = () => {
-  return (
-    <nav className="navbar navbar-default">
-      <div className="container">
-        <div className="navbar-header">
-          <IndexLink to="/" activeClassName="navbar-brand" className="navbar-brand">
-            ReatifyApp
-          </IndexLink>
-        </div>
-        <ul className="nav navbar-nav">
-          <li>
-            <IndexLink to="/" activeClassName="active"><i className="fa fa-home"/> Home</IndexLink>
-          </li>
-          <li>
-            <Link to="/about" activeClassName="active"><i className="fa fa-address-book"/> About</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
+class Header extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  renderDropDownTitle(user) {
+    return (
+      <span>
+        {user.id} &nbsp;
+        <img className="img-circle" src={user.image} width="30" height="30" alt="user-image"/>
+      </span>
+    );
+  }
+
+  renderLoggedSection() {
+    const {user, onLogout} = this.props;
+    return (
+      <Nav pullRight>
+        <NavDropdown eventKey={3} title={this.renderDropDownTitle(user)} id="basic-nav-dropdown">
+          <LinkContainer to="/profile">
+            <MenuItem eventKey={3.1}><i className="fa fa-address-card"/> &nbsp; Profile</MenuItem>
+          </LinkContainer>
+          <MenuItem divider/>
+          <MenuItem eventKey={3.2} onClick={() => onLogout()}><i className="fa fa-sign-out"/> Logout</MenuItem>
+        </NavDropdown>
+      </Nav>
+    );
+  }
+
+  render() {
+    const {loggedIn} = this.props;
+    return (
+      <Navbar fluid collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <IndexLink to="/" activeClassName="navbar-brand" className="navbar-brand">
+              ReatifyApp
+            </IndexLink>
+          </Navbar.Brand>
+          <Navbar.Toggle/>
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <IndexLinkContainer to="/">
+              <NavItem eventKey={1}>
+                <i className="fa fa-home"/> Home
+              </NavItem>
+            </IndexLinkContainer>
+          </Nav>
+          {loggedIn && this.renderLoggedSection()}
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
+}
 
 Header.propTypes = {
-  //
+  loggedIn: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default Header;

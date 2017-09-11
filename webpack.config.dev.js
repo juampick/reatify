@@ -3,7 +3,11 @@ import path from 'path';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-  'process.env.API_HOST': JSON.stringify(process.env.API_HOST || '')
+  'process.env.BASE_APP': JSON.stringify(process.env.BASE_APP || 'http://localhost:3001/'),
+  'process.env.SPOTIFY_WEB_API_AUTH_HOST': JSON.stringify(process.env.SPOTIFY_WEB_API_AUTH_HOST || 'https://accounts.spotify.com/'),
+  'process.env.SPOTIFY_WEB_API_HOST': JSON.stringify(process.env.SPOTIFY_WEB_API_HOST || 'https://api.spotify.com/v1/'),
+  'process.env.CLIENT_ID': JSON.stringify(process.env.CLIENT_ID || '4a1a2468c80f4ea09ed416f81c0fadf9'),
+  'process.env.CLIENT_SECRET': JSON.stringify(process.env.CLIENT_SECRET || '1a15fe6ce40a4367b02662f1fdbe9f08')
 };
 
 export default {

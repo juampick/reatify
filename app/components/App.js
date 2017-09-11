@@ -1,22 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Favicon from 'react-favicon';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import Favicon from 'react-favicon';
+import {Grid} from 'react-bootstrap';
+import * as sessionActions from '../actions/sessionActions';
 import Header from './partials/header/Header';
 import Footer from './partials/footer/Footer';
 import {FAVICON_SPOTIFY} from '../favicon';
 
 // This component handles the App template used on every page.
 class App extends React.Component {
-  render(){
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      loading: true
+    };
+
+    this.handleLogOut = this.handleLogOut.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(() => this.setState({loading: false}), 1500);
+  }
+
+  handleLogOut() {
+    this.props.sessionActions.logOut();
+  }
+
+  render() {
+    const {loading} = this.state;
+    const {loggedIn, user} = this.props;
+
+    if (loading) { //When app's not ready, loading null
+      return null;
+    }
+
     return (
       <div>
         <Favicon url={[FAVICON_SPOTIFY]}/>
-        <Header/>
-        <div className="container-fluid">
+        <Header
+          loggedIn={loggedIn}
+          onLogout={this.handleLogOut}
+          user={user}
+        />
+        <Grid fluid={true}>
           {this.props.children}
-        </div>
-        <hr />
+        </Grid>
+        <hr/>
         <Footer/>
       </div>
     );
@@ -24,7 +56,23 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired
+  sessionActions: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
 };
 
-export default connect()(App);
+function mapStatesToProps(state) {
+  return {
+    loggedIn: state.auth.loggedIn,
+    user: state.user.data
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    sessionActions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+
+export default connect(mapStatesToProps, mapDispatchToProps)(App);
