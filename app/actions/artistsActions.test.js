@@ -6,8 +6,7 @@ import * as endpoints from '../resources/apiEndpoints';
 import * as types from './actionTypes';
 import * as artistsActions from './artistsActions';
 import * as testHelper from '../testHelper';
-import {ARTIST, RELATED_ARTIST_SELECTED} from '../resources/constants';
-import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_ACCOUNT_ME} from '../resources/constants';
+import {ARTIST, RELATED_ARTIST_SELECTED, SPOTIFY_ACCESS_TOKEN} from '../resources/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
