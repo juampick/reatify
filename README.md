@@ -2,29 +2,34 @@
   
 A little Spotify Client using the Spotify WEB API. Entirely made on ReactJS/Redux.
 
+## Objective
+The App will suggest you new artists based on the artists you like. And you can follow/unfollow them.
+
 ## Description
-Project created as a basic simple Spotify Client using React and Redux.
-You can view your profile, and view your followed artist, and also you can being suggested by new artist by clicking inside each of the artist.
+Project created as a basic Spotify Client using React and Redux.
+You can view your profile. View your followed artist, and also being suggested by new artists by clicking on each of the artist.
 You can follow or unfollow artists.
 
 ### Spotify Web API Auth
-Has been used the `Implicit Grant Flow` Auth Flow described here: https://developer.spotify.com/web-api/authorization-guide/#implicit-grant-flow
+Has been used the [Implicit Grant Flow](https://developer.spotify.com/web-api/authorization-guide/#implicit-grant-flow) to authenticate with the API.
 
-## Requirements: 
-1. You'll need an Spotify Account (free or premium)
-2. You'll need to follow at least 1 artist.
+### Requirements: 
+1. A Spotify Account (free or premium)
+2. Need to be following 1 artist at least.
 
 ## Installation/Execution
 
 ### Environmental Variables:
 
-You have several environmental variables if you want to specify build the project.
+You have several environmental variables if you want to specify build the project for your needs.
 
-- `BASE_APP`: the base path of the project. (ie: `http://localhost:3001/). This will be used to create the REDIRECT_URI that the Spotify Web API needs.
-- `CLIENT_ID`: the client id of your SPOTIFY APP.
-- `CLIENT_SECRET`: the client secret of your SPOTIFY APP.
+- `BASE_APP`: the base path of the project. (ie: `http://localhost:3001/`). This will be used to create the `REDIRECT_URI` that the Spotify Web API needs.
+- `CLIENT_ID`: the client id of your Spotify App.
+- `CLIENT_SECRET`: the client secret of your Spotify App.
+- `SPOTIFY_WEB_API_AUTH_HOST`: the Spotify Web API Auth URL that defaults to: `https://accounts.spotify.com/`.
+- `SPOTIFY_WEB_API_HOST`: the Spotify Web API Host URL that defaults to: `https://api.spotify.com/v1/`.
 
-If you want to set the env variables, you can do it in the following way:
+If you want to set the env variables, you can do it in the following way: (ie:)
 
 - OSX/Linux:
 ```
@@ -41,7 +46,7 @@ npm run build
 To install please execute: 
 `npm install` over the root of the project
 
-#### Running the Project in dev mode
+#### Running the Project in Development mode
 `npm start -s` this will start the project doing all the tasks (lint, tests, etc, and also keeping the watcher active)
 
 ### Deploying to Server
@@ -52,15 +57,20 @@ To build the project to be deployed in a server, please execute:
 #### Running the Project in production mode (with compiled files)
 `npm run start:dist` will execute the project with a little nodeJS local server using your recently compiled files on `/dist` folder.
 
-## Tech Stack
+### Demo deployed on a S3 Bucket: 
+[Demo](http://reatify.s3-website.us-east-2.amazonaws.com/)
+
+## Tech Stack / Main Used Libraries
 
 ### Frontend
 - React
 - Redux 
+- React Router
 
 ### UI
 - Sass
 - Bootstrap 
+- Font Awesome
 
 ### Testing
 - Mocha
