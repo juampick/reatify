@@ -2,7 +2,7 @@ import {IMAGE_COVER, IMAGE_THUMBNAIL} from '../resources/constants';
 
 /**
  * Function based on the image type, returns the image you need.
- * Usually 1st image: 600x600, 2nd: 300x300, 3rd: 64x64
+ * Usually 1st image: 600x600, 2nd: 300x300 (approximately values)
  * @param imagesArray
  * @param type
  */

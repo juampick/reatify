@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {Button, Image, Panel} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import {getImage} from '../../../../../helpers/imageHelper';
 import LoadingSpinner from '../../../../common/loading_spinner/LoadingSpinner';
 import './ArtistItem.scss';
