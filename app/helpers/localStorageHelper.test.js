@@ -10,10 +10,6 @@ describe('LocalStorageHelper', () => {
     ];
 
     // act.
-    localStorage.setItem = expect.createSpy().andReturn(JSON.stringify(test));
-    localStorage.getItem = expect.createSpy().andReturn(JSON.stringify(test));
-    localStorage.removeItem = expect.createSpy().andReturn();
-
     localStorageHelper.set('testList', JSON.stringify(test));
 
     // assert.

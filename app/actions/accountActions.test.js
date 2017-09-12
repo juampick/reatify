@@ -5,6 +5,7 @@ import * as endpoints from '../resources/apiEndpoints';
 import * as types from './actionTypes';
 import * as accountActions from './accountActions';
 import * as testHelper from '../testHelper';
+import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_ACCOUNT_ME} from '../resources/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -35,8 +36,7 @@ describe('Account Actions', () => {
           ...accountResponse
         });
 
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-      localStorage.setItem = expect.createSpy().andReturn(true);
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
 
       const store = mockStore({});
 
@@ -74,8 +74,6 @@ describe('Account Actions', () => {
           ...accountResponseError
         });
 
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-
       const store = mockStore({});
 
       // Act & assert.
@@ -109,7 +107,7 @@ describe('Account Actions', () => {
         images: ['']
       };
 
-      localStorage.getItem = expect.createSpy().andReturn(JSON.stringify(user));
+      localStorage.setItem(SPOTIFY_ACCOUNT_ME, JSON.stringify(user));
       const store = mockStore({});
 
       // Act.

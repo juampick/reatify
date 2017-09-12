@@ -106,12 +106,13 @@ export function artistsFollowingDeleteError(id, message) {
 export function getFollowingArtists() {
   return function (dispatch) {
 
-    //ToDo check this part: we need to re-enabled it and make work from any
-    // if (localStorageHelper.get(RELATED_ARTIST_SELECTED)){
-    //   const artistSelected = localStorageHelper.getParsedItem(RELATED_ARTIST_SELECTED);
-    //   dispatch(getRelatedArtists(artistSelected.id, artistSelected.name));
-    //   return;
-    // }
+    if (localStorageHelper.get(RELATED_ARTIST_SELECTED)) {
+      const artistSelected = localStorageHelper.getParsedItem(RELATED_ARTIST_SELECTED);
+      if (artistSelected && artistSelected.id && artistSelected.name){
+        dispatch(getRelatedArtists(artistSelected.id, artistSelected.name));
+      }
+      return;
+    }
 
     dispatch(artistsFollowingGetRequest());
 
@@ -153,8 +154,7 @@ export function getRelatedArtists(id, name) {
         //Also storing the selected artist on the localStorage.
         localStorageHelper.set(RELATED_ARTIST_SELECTED, JSON.stringify({id: id, name: name}));
       });
-    }).catch(error => {
-      console.log(error);
+    }).catch(() => {
       dispatch(artistsRelatedGetError(id, 'Unknown Error'));
     });
   };

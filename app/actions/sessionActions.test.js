@@ -5,6 +5,7 @@ import * as endpoints from '../resources/apiEndpoints';
 import * as types from './actionTypes';
 import * as sessionActions from './sessionActions';
 import * as testHelper from '../testHelper';
+import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_EXPIRES_IN, SPOTIFY_STATE_HASH} from '../resources/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -48,12 +49,13 @@ describe('Session Actions', () => {
           ...accountResponse
         });
 
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-      localStorage.setItem = expect.createSpy().andReturn(true);
-      localStorage.removeItem = expect.createSpy(() => {
-      }).andCallThrough();
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
+      localStorage.setItem(SPOTIFY_STATE_HASH, '23232321124efdsf');
 
-      const hashParams = {};
+      const hashParams = {
+        access_token: testHelper.token,
+        expires_in: 3600
+      };
       const queryParams = {};
 
       const store = mockStore({});
@@ -79,8 +81,8 @@ describe('Session Actions', () => {
           });
           expect(actions[3]).toEqual({
             type: types.LOG_IN_SUCCESS,
-            accessToken: undefined,
-            expiresIn: undefined
+            accessToken: testHelper.token,
+            expiresIn: 3600
           });
         });
     });
@@ -89,8 +91,10 @@ describe('Session Actions', () => {
   describe('Account Actions - Check and Set Session State', () => {
     it(`should be able to dispatch ${types.LOG_IN_CHECK} when checkAndSetSessionState() action is call`, () => {
       // Arrange.
-      localStorage.getItem = expect.createSpy().andReturn(true);
       const store = mockStore({});
+
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
+      localStorage.setItem(SPOTIFY_EXPIRES_IN, "3600");
 
       // Act.
       store.dispatch(sessionActions.checkAndSetSessionState());
@@ -99,8 +103,8 @@ describe('Session Actions', () => {
       const actions = store.getActions();
       expect(actions[0]).toEqual({
         type: types.LOG_IN_CHECK,
-        accessToken: true,
-        expiresIn: true
+        accessToken: testHelper.token,
+        expiresIn: "3600"
       });
     });
   });
@@ -108,7 +112,6 @@ describe('Session Actions', () => {
   describe('Account Actions - LogOut', () => {
     it(`should be able to dispatch ${types.LOG_OUT_SUCCESS} when logOut() action is call`, () => {
       // Arrange.
-      localStorage.getItem = expect.createSpy().andReturn(true);
       const store = mockStore({});
 
       // Act.
@@ -125,7 +128,6 @@ describe('Session Actions', () => {
   describe('Account Actions - Session Expired', () => {
     it(`should be able to dispatch ${types.SESSION_EXPIRED} when sessionExpiredAction() action is call`, () => {
       // Arrange.
-      localStorage.getItem = expect.createSpy().andReturn(true);
       const store = mockStore({});
 
       // Act.

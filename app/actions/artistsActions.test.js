@@ -6,7 +6,8 @@ import * as endpoints from '../resources/apiEndpoints';
 import * as types from './actionTypes';
 import * as artistsActions from './artistsActions';
 import * as testHelper from '../testHelper';
-import {ARTIST} from '../resources/constants';
+import {ARTIST, RELATED_ARTIST_SELECTED} from '../resources/constants';
+import {SPOTIFY_ACCESS_TOKEN, SPOTIFY_ACCOUNT_ME} from '../resources/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -17,13 +18,6 @@ describe('Artists Actions', () => {
   });
 
   describe('Artists Actions - Get Following Artists', () => {
-    before(() => {
-      // global.localStorage = {
-      //
-      // }
-    });
-
-    //ToDo: check this part.
     it(`should be able to dispatch ${types.ARTISTS_FOLLOWING_GET_REQUEST} and ${types.ARTISTS_FOLLOWING_GET_SUCCESS} when getFollowingArtists() action is call with correct params`, () => {
       // Arrange.
       const artistsResponse = {
@@ -62,20 +56,16 @@ describe('Artists Actions', () => {
           ...artistsResponse
         });
 
-      //ToDo check this part: to set the related artist... so that localStorage works..
-      //localStorage.getItemParsed = expect.createSpy().andReturn({});
-
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-      localStorage.setItem = expect.createSpy().andReturn(true);
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
 
       const store = mockStore({});
 
       // Act & assert.
-      return store.dispatch(artistsActions.getFollowingArtists())
+      store.dispatch(artistsActions.getFollowingArtists())
         .then(() => {
           const actions = store.getActions();
           expect(actions[0]).toEqual({
-            type: types.ARTISTS_FOLLOWING_GET_REQUEST,
+            type: types.ARTISTS_FOLLOWING_GET_REQUEST
           });
           expect(actions[1]).toEqual({
             type: types.ARTISTS_FOLLOWING_GET_SUCCESS,
@@ -103,8 +93,6 @@ describe('Artists Actions', () => {
           ...artistsResponseError
         });
 
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-
       const store = mockStore({});
 
       // Act & assert.
@@ -123,7 +111,7 @@ describe('Artists Actions', () => {
   });
 
   describe('Artists Actions - Get Related Artists', () => {
-    xit(`should be able to dispatch ${types.ARTISTS_RELATED_GET_REQUEST} and ${types.ARTISTS_RELATED_GET_SUCCESS} when getRelatedArtists() action is call with correct params`, () => {
+    it(`should be able to dispatch ${types.ARTISTS_RELATED_GET_REQUEST} and ${types.ARTISTS_RELATED_GET_SUCCESS} when getRelatedArtists() action is call with correct params`, () => {
       // Arrange.
       const artistsResponse = {
         artists: [
@@ -150,6 +138,8 @@ describe('Artists Actions', () => {
         name: 'Test Artists'
       };
 
+      //Mocking both services:
+
       const urlRelatedArtists = `/${endpoints.ARTISTS}/${params.id}/${endpoints.RELATED_ARTISTS}`;
       testHelper.getAuthenticatedNock()
         .get(urlRelatedArtists)
@@ -157,23 +147,21 @@ describe('Artists Actions', () => {
           ...artistsResponse
         });
 
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
+      localStorage.setItem(RELATED_ARTIST_SELECTED, JSON.stringify({id: params.id, name: params.name}));
+
       const urlParams = {
         type: ARTIST,
         ids: ['12345']
       };
+
       const queryStrParams = queryString.stringify(urlParams);
-      const urlUserFollowingArtists = `${endpoints.ME_FOLLOWING}/contains?${queryStrParams}`;
+      const urlUserFollowingArtists = `/${endpoints.ME_FOLLOWING}/contains?${queryStrParams}`;
       testHelper.getAuthenticatedNock()
         .get(urlUserFollowingArtists)
         .reply(200, {
           ...artistsFollowingResponse
         });
-
-      //ToDo check this part: to set the related artist... so that localStorage works..
-      //localStorage.getItemParsed = expect.createSpy().andReturn({});
-
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
-      localStorage.setItem = expect.createSpy().andReturn(true);
 
       const store = mockStore({});
 
@@ -186,46 +174,69 @@ describe('Artists Actions', () => {
             id: params.id,
             name: params.name
           });
-          console.log(actions);
           expect(actions[1]).toEqual({
             type: types.ARTISTS_RELATED_GET_SUCCESS,
-            artists: artistsResponse.artists
+            id: params.id,
+            items: artistsResponse.artists
           });
         });
     });
 
-    xit(`should be able to dispatch ${types.ARTISTS_FOLLOWING_GET_REQUEST}, ${types.ARTISTS_FOLLOWING_GET_ERROR} when getFollowingArtists() action is call with bad params`, () => {
+    it(`should be able to dispatch ${types.ARTISTS_RELATED_GET_REQUEST} and ${types.ARTISTS_RELATED_GET_SUCCESS} when getRelatedArtists() action is call with bad params`, () => {
       // Arrange.
       const artistsResponseError = {
         message: 'Unknown Error'
       };
 
-      const urlParams = {
-        limit: 50,
-        type: 'failtest'
+      const artistsFollowingResponse = {
+        test: 'ds'
       };
 
-      const queryStrParams = queryString.stringify(urlParams);
-      const url = `/${endpoints.ME_FOLLOWING}?${queryStrParams}`;
+      const params = {
+        id: '12345',
+        name: 'Test Artists'
+      };
+
+      //Mocking both services:
+
+      const urlRelatedArtists = `/${endpoints.ARTISTS}/${params.id}/${endpoints.RELATED_ARTISTS}`;
       testHelper.getAuthenticatedNock()
-        .get(url)
-        .reply(200, {
+        .get(urlRelatedArtists)
+        .reply(500, {
           ...artistsResponseError
         });
 
-      localStorage.getItem = expect.createSpy().andReturn(testHelper.token);
+      localStorage.setItem(SPOTIFY_ACCESS_TOKEN, testHelper.token);
+      localStorage.setItem(RELATED_ARTIST_SELECTED, JSON.stringify({id: params.id, name: params.name}));
+
+      const urlParams = {
+        type: ARTIST,
+        ids: ['12345']
+      };
+
+      const queryStrParams = queryString.stringify(urlParams);
+      const urlUserFollowingArtists = `/${endpoints.ME_FOLLOWING}/contains?${queryStrParams}`;
+      testHelper.getAuthenticatedNock()
+        .get(urlUserFollowingArtists)
+        .reply(200, {
+          ...artistsFollowingResponse
+        });
 
       const store = mockStore({});
 
       // Act & assert.
-      return store.dispatch(artistsActions.getFollowingArtists())
+      return store.dispatch(artistsActions.getRelatedArtists(params.id, params.name))
         .then(() => {
           const actions = store.getActions();
           expect(actions[0]).toEqual({
-            type: types.ARTISTS_FOLLOWING_GET_REQUEST
+            type: types.ARTISTS_RELATED_GET_REQUEST,
+            id: params.id,
+            name: params.name
           });
-          expect(actions[1]).toEqual({
-            type: types.ARTISTS_FOLLOWING_GET_ERROR,
+          expect(actions[1].type).toEqual(types.SERVICE_ERROR);
+          expect(actions[2]).toEqual({
+            type: types.ARTISTS_RELATED_GET_ERROR,
+            id: params.id,
             message: artistsResponseError.message
           });
         });
