@@ -1,6 +1,6 @@
 # Reatify 
   
-A little Spotify Client using the Spotify WEB API. Entirely made on ReactJS/Redux.
+A little Spotify Client using the [Spotify WEB API](https://developer.spotify.com/web-api/). Entirely made on ReactJS/Redux.
 
 ## Objective
 The App will suggest you new artists based on the artists you like. And you can follow/unfollow them.
@@ -13,7 +13,10 @@ You can follow or unfollow artists.
 ### Spotify Web API Auth
 Has been used the [Implicit Grant Flow](https://developer.spotify.com/web-api/authorization-guide/#implicit-grant-flow) to authenticate with the API.
 
-### Requirements: 
+### Building the App with your App credentials
+If you want to create your application, and have your `CLIENT_ID` and `CLIENT_SECRET`. Please go to: [Spotify My Applications](https://developer.spotify.com/my-applications/) and register your app. Remember to add the corrects `REDIRECT_URI` you need to use the App.
+
+### Requirements for App Usage:
 1. A Spotify Account (free or premium)
 2. Need to be following 1 artist at least.
 
@@ -57,8 +60,8 @@ To build the project to be deployed in a server, please execute:
 #### Running the Project in production mode (with compiled files)
 `npm run start:dist` will execute the project with a little nodeJS local server using your recently compiled files on `/dist` folder.
 
-### Demo deployed on a S3 Bucket: 
-[Demo](http://reatify.s3-website.us-east-2.amazonaws.com/)
+### Demo deployed on a AWS S3 Bucket
+[Reatify Demo](http://reatify.s3-website.us-east-2.amazonaws.com/)
 
 ## Tech Stack / Main Used Libraries
 
