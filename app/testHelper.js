@@ -15,7 +15,3 @@ export function getAuthenticatedNock() {
     }
   });
 }
-
-export function getUnAuthenticatedNock() { //ToDo: check if this is used or not.
-  return nock(endpoints.SPOTIFY_WEB_API_HOST);
-}

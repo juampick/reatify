@@ -1,12 +1,10 @@
 import expect from 'expect';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import queryString from 'query-string';
 import * as endpoints from '../resources/apiEndpoints';
 import * as types from './actionTypes';
 import * as sessionActions from './sessionActions';
 import * as testHelper from '../testHelper';
-import {ARTIST} from '../resources/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -30,11 +28,6 @@ describe('Session Actions', () => {
   });
 
   describe('Session Actions - Check Callback response', () => {
-    before(() => {
-      global.localStorage = {
-        i2x_token: 'someToken',
-      };
-    });
     it(`should be able to dispatch ${types.ACCOUNT_ME_GET_REQUEST}, ${types.ACCOUNT_ME_GET_SUCCESS} and ${types.LOG_IN_SUCCESS} when checkCallbackResponse() action is call with correct params`, () => {
       // Arrange.
       const accountResponse = {

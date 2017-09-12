@@ -68,7 +68,7 @@ export function getAccountData() {
 export function checkAndSetUserState() {
   return function (dispatch) {
     const user = localStorageHelper.get(SPOTIFY_ACCOUNT_ME);
-    if (!user) //ToDo: what happened if not set? logOut or calling again the user?
+    if (!user)
       return;
 
     const userParsed = JSON.parse(user);

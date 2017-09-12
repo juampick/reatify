@@ -43,7 +43,7 @@ export function artistsRelatedGetSuccess(id, items) {
 
 export function artistsRelatedGetError(id, message) {
   return {
-    type: types.ARTISTS_FOLLOWING_GET_ERROR,
+    type: types.ARTISTS_RELATED_GET_ERROR,
     id,
     message
   };
@@ -106,19 +106,19 @@ export function artistsFollowingDeleteError(id, message) {
 export function getFollowingArtists() {
   return function (dispatch) {
 
-    if (localStorageHelper.get(RELATED_ARTIST_SELECTED)){
-      const artistSelected = localStorageHelper.getParsedItem(RELATED_ARTIST_SELECTED);
-      dispatch(getRelatedArtists(artistSelected.id, artistSelected.name));
-      return;
-    }
+    //ToDo check this part: we need to re-enabled it and make work from any
+    // if (localStorageHelper.get(RELATED_ARTIST_SELECTED)){
+    //   const artistSelected = localStorageHelper.getParsedItem(RELATED_ARTIST_SELECTED);
+    //   dispatch(getRelatedArtists(artistSelected.id, artistSelected.name));
+    //   return;
+    // }
 
     dispatch(artistsFollowingGetRequest());
 
     return artistsService.getFollowingArtists(dispatch, ARTISTS_FOLLOWING_LIMIT).then(response => {
       dispatch(artistsFollowingGetSuccess(response.artists.items));
-    }).catch(error => {
-      const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
-      dispatch(artistsFollowingGetError(message));
+    }).catch(() => {
+      dispatch(artistsFollowingGetError('Unknown Error'));
     });
   };
 }
@@ -153,10 +153,9 @@ export function getRelatedArtists(id, name) {
         //Also storing the selected artist on the localStorage.
         localStorageHelper.set(RELATED_ARTIST_SELECTED, JSON.stringify({id: id, name: name}));
       });
-
     }).catch(error => {
-      const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
-      dispatch(artistsRelatedGetError(id, message));
+      console.log(error);
+      dispatch(artistsRelatedGetError(id, 'Unknown Error'));
     });
   };
 }
@@ -171,22 +170,19 @@ export function resetRelatedArtists() {
 
 export function updateFollowArtist(id, follow) {
   return function (dispatch) {
-
     if (follow) { //Follow artist:
       dispatch(artistsFollowingUpdateRequest(id));
       return artistsService.followArtist(dispatch, id).then(() => {
         dispatch(artistsFollowingUpdateSuccess(id));
-      }).catch(error => {
-        const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
-        dispatch(artistsFollowingUpdateError(id, message));
+      }).catch(() => {
+        dispatch(artistsFollowingUpdateError(id, 'Unknown Error'));
       });
-    } else { //Unfollow artist:
+    } else { //UnFollow artist:
       dispatch(artistsFollowingDeleteRequest(id));
-      return artistsService.unFollowArtist(dispatch, id).then(response => {
+      return artistsService.unFollowArtist(dispatch, id).then(() => {
         dispatch(artistsFollowingDeleteSuccess(id));
-      }).catch(error => {
-        const message = error.payload.error.message ? error.payload.error.message : 'Unknown Error';
-        dispatch(artistsFollowingDeleteError(id, message));
+      }).catch(() => {
+        dispatch(artistsFollowingDeleteError(id, 'Unknown Error'));
       });
     }
   };

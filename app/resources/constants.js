@@ -2,7 +2,7 @@ export const SPOTIFY_ACCESS_TOKEN = 'spotify_access_token';
 export const SPOTIFY_STATE_HASH = 'spotify_state_hash';
 export const SPOTIFY_EXPIRES_IN = 'spotify_expires_in';
 export const SPOTIFY_ACCOUNT_ME = 'spotify_account_me';
-export const RELATED_ARTIST_SELECTED =  'related_artist_selected';
+export const RELATED_ARTIST_SELECTED = 'related_artist_selected';
 
 export const AUTHORIZE = 'authorize';
 export const TOKEN = 'token';

@@ -16,7 +16,7 @@ export default () => {
     if (!localStorageHelper.get(SPOTIFY_ACCESS_TOKEN)) {
       replace({
         pathname: '/login',
-        state: {nextPathname: nextState.location.pathname} //ToDo: is this ok?
+        state: {nextPathname: nextState.location.pathname}
       });
     }
   }
@@ -26,7 +26,7 @@ export default () => {
 
     replace({
       pathname: '/',
-      state: {nextPathname: nextState.location.pathname} //ToDo: is this ok?
+      state: {nextPathname: nextState.location.pathname}
     });
   }
 
