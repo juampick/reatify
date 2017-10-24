@@ -7,6 +7,6 @@ phases:
   build:
     commands:
       - npm run build
-  deploy:
+  post_build:
     commands:
       - aws s3 sync dist/ s3://reatify --delete
