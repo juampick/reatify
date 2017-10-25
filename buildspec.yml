@@ -4,6 +4,9 @@ phases:
   install:
     commands:
       - npm install
+  pre_build:
+    commands:
+      - echo "${S3_BUCKET}"
   build:
     commands:
       - npm run build
