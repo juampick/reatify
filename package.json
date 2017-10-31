@@ -35,7 +35,7 @@
     "test:watch": "npm run test -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
-    "prebuild": "npm-run-all clean-dist test lint",
+    "prebuild": "npm-run-all clean-dist lint",
     "build": "babel-node tools/build.js",
     "start:dist": "babel-node tools/distServer.js"
   },
