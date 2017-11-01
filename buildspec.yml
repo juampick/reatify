@@ -17,7 +17,13 @@ phases:
     commands:
       - echo Build application...
       - npm run build
+      - echo Set version in index.html
+
   post_build:
     commands:
-      - echo Deploy to S3...
-      - aws s3 sync dist/ s3://${S3_BUCKET} --delete --region ${S3_REGION}
+      - echo Distribute to S3.
+      - aws s3 sync dist/ s3://${S3_BUCKET_PROJECT} --delete --region ${S3_REGION}
+      - echo Update Cache-Control Header on index.html...
+      - aws s3 cp s3://${S3_BUCKET_PROJECT}/index.html s3://${S3_BUCKET_PROJECT}/index.html --region {$S3_REGION} --cache-control "no-cache,no-store" --metadata-directive "REPLACE"
+      - echo Upload build to S3 vas.builds to archive...
+      - aws s3 cp dist/ s3://${S3_BUCKET_ARCHIVE}/${CODEBUILD_BUILD_ID}/ --recursive
