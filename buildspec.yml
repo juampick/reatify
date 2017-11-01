@@ -3,16 +3,21 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Install dependencies
+      - echo Install dependencies:
       - npm install
   pre_build:
     commands:
-      - echo node version: node -v
-      - echo npm version: npm -v
-      - echo Run unit tests: npm run test
+      - echo node version:
+      - node -v
+      - echo npm version:
+      - npm -v
+      - echo Run unit tests:
+      - npm run test
   build:
     commands:
-      - echo Build application: npm run build
+      - echo Build application:
+      - npm run build
   post_build:
     commands:
+      - echo Deploy to S3:
       - aws s3 sync dist/ s3://${S3_BUCKET} --delete --region ${S3_REGION}
